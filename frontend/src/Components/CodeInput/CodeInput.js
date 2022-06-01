@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './styles.css'
 
-import funcTest from '../../external-modules/playground-module'
+import funcTest from '../../sisprog-modules/playground'
 
 const CodeInput = () => {
     // const [isFileUpload, setIsFIleUpload] = useState(false)
