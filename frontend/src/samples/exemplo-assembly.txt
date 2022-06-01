@@ -1,0 +1,5 @@
+ADD R1 R2 0xAB37
+SUB R3 R1 0X1 #Comentário aqui
+
+MUL R1 R1 R3
+# mais comentários
