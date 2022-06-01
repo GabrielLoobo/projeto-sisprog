@@ -10,7 +10,10 @@ export default class Memory {
     }
 
     set_at(bitAddress, value) {
-        //TODO: Verificar se valor é válido. Deve ser algo entre 0 e 2**8 - 1
+        if (value > 2**8 -1 || value < 0) {
+            throw new Error("Tentativa de inserção de valor muito grande ou pequeno na memória")
+        } 
+        
         this._memory[bitAddress << 8] = value;
     }
 
