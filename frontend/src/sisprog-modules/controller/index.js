@@ -15,5 +15,11 @@ export default class Controller {
         
         console.log(rawInputCode)
         console.log('Setup Execution')
+        this._es._memory.set_at(0, 11);
+        return {
+            RD: this._es._RD.get(),
+            PC: this._es._PC.get(),
+            memory: this._es._memory.get_memory()
+        }
     }
 }
