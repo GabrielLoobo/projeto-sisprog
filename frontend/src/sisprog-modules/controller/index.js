@@ -1,4 +1,5 @@
 import ExecutionSimulator from '../simulator/index'
+import Loader from '../loader-dumper/loader';
 
 export default class Controller {
     _es;
@@ -23,7 +24,11 @@ export default class Controller {
         
         console.log(rawInputCode)
         console.log('Setup Execution')
-        this._es._memory.set_at(0, 11);
+
+        const MOCKED_BINARY_STRING = '000000000000001111111111000011111111000010101010'
+
+        const loader = new Loader();
+        loader.loadFromBinaryString(MOCKED_BINARY_STRING, this._es._memory);
         return {
             RD: this._es._RD.get(),
             PC: this._es._PC.get(),

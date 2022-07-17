@@ -5,7 +5,7 @@ import './styles.css';
 
 const Memory = (props) => {
     const { memory } = props;
-    console.log(memory)
+
     const [addressOffset, setAddressOffset] = useState(0)
     const memorySection = memory.slice(addressOffset, addressOffset+20);
     
@@ -27,7 +27,6 @@ const Memory = (props) => {
                     <p className='mem-title' style={{paddingBottom:15}}>Dados</p>
                 </div>
                 {memorySection.map((item, index) => {
-                    console.log(item, index)
                     return (
                         <div className='mem-row'>
                             <p>{parseIntToHex(addressOffset + index)}</p>
