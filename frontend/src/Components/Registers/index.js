@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { parseIntToHex } from '../../utils/numeric.js';
 import './styles.css';
 
 const Registers = (props) => {
     const { RD, PC } = props;
-
-    const parseIntToHex = (intValue) => {
-        return '0x' + intValue.toString(16).toUpperCase();
-    }
 
     return (
         <div className='reg-wrapper'>
@@ -19,12 +16,12 @@ const Registers = (props) => {
                     <p className='reg-title' style={{paddingBottom:15}}>Dados</p>
                 </div>
                 <div className='reg-row'>
-                    <p className='reg-title' style={{paddingBottom:15}}>RD</p>
-                    <p className='reg-title' style={{paddingBottom:15}}>{parseIntToHex(RD)}</p>
+                    <p style={{paddingBottom:15}}>RD</p>
+                    <p style={{paddingBottom:15}}>{parseIntToHex(RD, 2)}</p>
                 </div>
                 <div className='reg-row'>
-                    <p className='reg-title' style={{paddingBottom:15}}>PC</p>
-                    <p className='reg-title' style={{paddingBottom:15}}>{parseIntToHex(PC)}</p>
+                    <p style={{paddingBottom:15}}>PC</p>
+                    <p style={{paddingBottom:15}}>{parseIntToHex(PC, 2)}</p>
                 </div>
                 
             </div>

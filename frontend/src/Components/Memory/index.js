@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AngleLeft from '../../Assets/angle-left.js'
 import AngleRight from '../../Assets/angle-right.js'
+import { parseIntToHex } from '../../utils/numeric.js';
 import './styles.css';
 
 const Memory = (props) => {
@@ -11,10 +12,6 @@ const Memory = (props) => {
     
     const lowerLimit = 0;
     const upperLimit = memory.length-1;
-
-    const parseIntToHex = (intValue) => {
-        return '0x' + intValue.toString(16).toUpperCase();
-    }
 
     return (
         <div className='mem-wrapper'>
@@ -29,8 +26,8 @@ const Memory = (props) => {
                 {memorySection.map((item, index) => {
                     return (
                         <div className='mem-row'>
-                            <p>{parseIntToHex(addressOffset + index)}</p>
-                            <p>{parseIntToHex(item)}</p>
+                            <p>{parseIntToHex(addressOffset + index, 3)}</p>
+                            <p>{parseIntToHex(item, 2)}</p>
                         </div>
                     )
                 })}
