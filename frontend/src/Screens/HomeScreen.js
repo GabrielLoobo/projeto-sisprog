@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import './variables.css'
 import {
@@ -16,7 +16,16 @@ const HomeScreen = () => {
     const [memory, setMemory] = useState([]);
     const [RD, setRD] = useState(0);
     const [PC, setPC] = useState(0);
-    
+
+    const handleGetMemoryState = () => {
+        const memoryState = controller.getMemoryState();
+        setMemory(memoryState.memory);
+        setRD(memoryState.RD);
+        setPC(memoryState.PC);
+    }
+    useEffect(() => {
+        handleGetMemoryState();
+    }, [])
     return (
         <div className='screen'>
             <div>
@@ -32,12 +41,6 @@ const HomeScreen = () => {
                 <div id="button-row">
                     <Button
                         onClick={() => {
-                            console.log('TODO')
-                        }}
-                        label={'Outro Botão'}
-                    />
-                    <Button
-                        onClick={() => {
                             const rawInputCode = document.getElementById('code-input-field').value;
                             const memoryState = controller.setupExecution(rawInputCode);
                             setMemory(memoryState.memory);
@@ -45,6 +48,18 @@ const HomeScreen = () => {
                             setPC(memoryState.PC);
                         }}
                         label={'Setup Execution'}
+                    />
+                    <Button
+                        onClick={() => {
+                            console.log('TODO')
+                        }}
+                        label={'Executar completo'}
+                    />
+                    <Button
+                        onClick={() => {
+                            console.log('TODO')
+                        }}
+                        label={'Executar passo'}
                     />
                 </div>
             </div>

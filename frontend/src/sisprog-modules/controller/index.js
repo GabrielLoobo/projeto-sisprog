@@ -6,6 +6,14 @@ export default class Controller {
     constructor() {
         this._es = new ExecutionSimulator();
     }
+    
+    getMemoryState(){
+        return {
+            RD: this._es._RD.get(),
+            PC: this._es._PC.get(),
+            memory: this._es._memory.get_memory()
+        }
+    }
 
     setupExecution(rawInputCode) {
         // Recebe o código do front end como string
