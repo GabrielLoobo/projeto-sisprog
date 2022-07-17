@@ -1,0 +1,13 @@
+.button-wrapper {
+    background-color: var(--primary);
+    padding: 20px;
+    width: fit-content;
+    border-radius: 10px;
+    border: none;
+    left: 0;
+}
+
+p {
+    color: var(--white);
+    font-family: 'Roboto', sans-serif;
+}
