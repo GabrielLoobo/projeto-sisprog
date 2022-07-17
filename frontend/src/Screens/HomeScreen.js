@@ -5,6 +5,7 @@ import {
     Button,
     CodeInput,
     Memory,
+    Registers,
     Tab
 } from '../Components'
 import Controller from '../sisprog-modules/controller'
@@ -51,6 +52,10 @@ const HomeScreen = () => {
 
                 <Memory 
                     memory={memory}
+                />
+                <Registers 
+                    RD={RD}
+                    PC={PC}
                 />
             </div>
         </div>
