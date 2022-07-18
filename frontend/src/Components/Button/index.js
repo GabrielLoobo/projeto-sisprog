@@ -4,6 +4,7 @@ import './styles.css'
 const Button = (props) => {
     return (
         <button
+            type="button"
             className={`button-wrapper`}
             onClick={props.onClick}
         >

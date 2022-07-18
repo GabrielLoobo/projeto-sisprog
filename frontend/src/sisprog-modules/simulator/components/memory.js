@@ -5,16 +5,16 @@ export default class Memory {
         this._memory = new Array(byteSize).fill(0);
     }
 
-    get_at(bitAddress){
-        return this._memory[bitAddress << 8] // Supondo que o endereço passado seja em bits
+    get_at(byteAddress){
+        return this._memory[byteAddress] // Supondo que o endereço passado seja em bytes
     }
 
-    set_at(bitAddress, value) {
+    set_at(byteAddress, value) {
         if (value > 2**8 -1 || value < 0) {
             throw new Error("Tentativa de inserção de valor muito grande ou pequeno na memória")
         } 
         
-        this._memory[bitAddress << 8] = value;
+        this._memory[byteAddress] = value;
     }
 
     get_memory(){
