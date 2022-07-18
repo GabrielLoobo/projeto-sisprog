@@ -30,10 +30,8 @@ export default class Controller {
         console.log(rawInputCode)
         console.log('Setup Execution')
 
-        const MOCKED_BINARY_STRING = '000000000000001111111111000011111111000010101010'
         const assemblerResult = this._assembler.assembleFromRawInput(rawInputCode)
-        console.log(assemblerResult)
-        const initialAddress = this._loader.loadFromBinaryString(MOCKED_BINARY_STRING, this._es._memory);
+        const initialAddress = this._loader.loadFromBinaryString(assemblerResult, this._es._memory);
         this._es._PC.set(initialAddress)
         return {
             RD: this._es._RD.get(),

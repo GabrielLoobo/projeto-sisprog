@@ -1,4 +1,4 @@
-ORG    07E
+ORG    29E
 INICIO:   LOAD   X
           ADD    Y 
           STORE  Z#comentarios

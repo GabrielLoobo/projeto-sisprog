@@ -37,20 +37,24 @@ export default class ExecutionSimulator {
         console.log('TODO_JUMPN')
     }
 
-    _ADD(secondByte){
-        this._RD.set(this._RD.get() + secondByte);
+    _ADD(firstByte, secondByte){
+        const address = this._getLast12Bits(firstByte, secondByte);
+        this._RD.set(this._RD.get() + this._memory.get_at(address));
     }
 
-    _SUB(secondByte){
-        this._RD.set(this._RD.get() - secondByte);
+    _SUB(firstByte, secondByte){
+        const address = this._getLast12Bits(firstByte, secondByte);
+        this._RD.set(this._RD.get() - this._memory.get_at(address));
     }
 
-    _MUL(secondByte){
-        this._RD.set(this._RD.get()*secondByte);
+    _MUL(firstByte, secondByte){
+        const address = this._getLast12Bits(firstByte, secondByte);
+        this._RD.set(this._RD.get() * this._memory.get_at(address));
     }
 
-    _DIV(secondByte){
-        this._RD.set(this._RD.get()/secondByte);
+    _DIV(firstByte, secondByte){
+        const address = this._getLast12Bits(firstByte, secondByte);
+        this._RD.set(this._RD.get() / this._memory.get_at(address));
     }
 
     _LOAD(firstByte, secondByte){
@@ -60,7 +64,7 @@ export default class ExecutionSimulator {
 
     _STORE(firstByte, secondByte){
         const address = this._getLast12Bits(firstByte, secondByte);
-        this._memory.set_at(address, this._RD)
+        this._memory.set_at(address, this._RD.get())
     }
 
     _STOP(){
@@ -69,15 +73,16 @@ export default class ExecutionSimulator {
 
     runNextInstruction(){
         const firstByte = this._memory.get_at(this._PC.get())
+        console.log(this._PC.get())
         this._PC.set(this._PC.get() + 1)
         const nibbles = this.getNibbles(firstByte)
-        const opCode = nibbles[0]
-
+        const opCode = nibbles[1]
         let stopExecution = false;
-
+        
         // Operations with 2 words
         if(opCode >= 0 && opCode <=9){
             const secondByte = this._memory.get_at(this._PC.get());
+            this._PC.set(this._PC.get() + 1)
             switch(opCode){
                 case 0: // 0000
                     this._JUMP(firstByte, secondByte);
@@ -89,16 +94,16 @@ export default class ExecutionSimulator {
                     this._JUMPN(firstByte, secondByte);
                     break;
                 case 3: // 0011
-                    this._ADD(secondByte);
+                    this._ADD(firstByte, secondByte);
                     break;
                 case 4: // 0100
-                    this._SUB(secondByte);
+                    this._SUB(firstByte, secondByte);
                     break;
                 case 5: // 0101
-                    this._MUL(secondByte);
+                    this._MUL(firstByte, secondByte);
                     break;
                 case 6: // 0110
-                    this._DIV(secondByte);
+                    this._DIV(firstByte, secondByte);
                     break;
                 case 7: // 0111
                     this._LOAD(firstByte, secondByte);
