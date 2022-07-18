@@ -69,7 +69,7 @@ export default class ExecutionSimulator {
 
     runNextInstruction(){
         const firstByte = this._memory.get_at(this._PC.get())
-        this._PC.set(this.PC + 1)
+        this._PC.set(this._PC.get() + 1)
         const nibbles = this.getNibbles(firstByte)
         const opCode = nibbles[0]
 
@@ -115,6 +115,8 @@ export default class ExecutionSimulator {
                 case 13: // 1101
                     this._STOP();
                     stopExecution = true;
+                    break;
+                default:
                     break;
             }
         }
