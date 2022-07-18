@@ -106,7 +106,7 @@ function toBin2(hexa){           // conversor da palavra de 2 hexa para bin
     var numHexa = hexa.split('');
 
     if(numHexa.length === 1){
-        numHexa = '0' + numHexa;
+        numHexa.unshift('0');
     }
 
     return bin4bit(numHexa[0]) + bin4bit(numHexa[1]);
