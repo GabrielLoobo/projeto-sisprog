@@ -10,12 +10,19 @@ import {
 } from '../Components'
 import Controller from '../sisprog-modules/controller'
 
+const controller = new Controller();
+
 const HomeScreen = () => {
 
-    const controller = new Controller();
     const [memory, setMemory] = useState([]);
     const [RD, setRD] = useState(0);
     const [PC, setPC] = useState(0);
+
+    const updateStateWithMemState = (memoryState) => {
+        setMemory(memoryState.memory);
+        setRD(memoryState.RD);
+        setPC(memoryState.PC);
+    }
 
     const handleGetMemoryState = () => {
         const memoryState = controller.getMemoryState();
@@ -23,6 +30,7 @@ const HomeScreen = () => {
         setRD(memoryState.RD);
         setPC(memoryState.PC);
     }
+
     useEffect(() => {
         handleGetMemoryState();
     }, [])
@@ -57,7 +65,8 @@ const HomeScreen = () => {
                     />
                     <Button
                         onClick={() => {
-                            console.log('TODO')
+                            const memoryState = controller.runInstruction();
+                            updateStateWithMemState(memoryState)
                         }}
                         label={'Executar passo'}
                     />

@@ -18,5 +18,7 @@ export default class Loader{
             addressOffset += 1;
             codeString = codeString.slice(8, codeString.length)
         }
+
+        return initialAddress;
     }
 }
