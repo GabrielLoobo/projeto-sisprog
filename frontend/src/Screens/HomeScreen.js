@@ -55,7 +55,7 @@ const HomeScreen = () => {
                             setRD(memoryState.RD);
                             setPC(memoryState.PC);
                         }}
-                        label={'Setup Execution'}
+                        label={'Carregar código'}
                     />
                     <Button
                         onClick={() => {
