@@ -22,14 +22,6 @@ export default class Controller {
     }
 
     setupExecution(rawInputCode) {
-        // Recebe o código do front end como string
-
-        // Fazer: "Limpar" o código de comentários/coisas inúteis (baixa prioridade)
-        // Fazer: Chamar o montador, passando o código recebido em rawInputCode e recebendo o código binário que será colocado na memória
-        
-        console.log(rawInputCode)
-        console.log('Setup Execution')
-
         const assemblerResult = this._assembler.assembleFromRawInput(rawInputCode)
         const initialAddress = this._loader.loadFromBinaryString(assemblerResult, this._es._memory);
         this._es._PC.set(initialAddress)
@@ -43,6 +35,22 @@ export default class Controller {
 
     runInstruction(){
         this._es.runNextInstruction();
+        return this.getMemoryState();
+    }
+
+    run(){
+        let stopExec = false;
+        let execCounter = 0
+        console.log( this._es._PC.get(), this._es._memory.get_memory().length)
+        while(
+            !stopExec &&
+            this._es._PC.get() < this._es._memory.get_memory().length &&
+            execCounter < 500
+            ){
+            execCounter += 1;
+            stopExec = this._es.runNextInstruction();
+        }
+
         return this.getMemoryState();
     }
 }

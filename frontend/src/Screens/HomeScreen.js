@@ -59,7 +59,8 @@ const HomeScreen = () => {
                     />
                     <Button
                         onClick={() => {
-                            console.log('TODO')
+                            const memoryState = controller.run();
+                            updateStateWithMemState(memoryState)
                         }}
                         label={'Executar completo'}
                     />
