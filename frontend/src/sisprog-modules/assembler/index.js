@@ -93,10 +93,10 @@ function bin4bit(unitHexa){  // funcao de conversao de hex pra bit que forca 4 b
 function toBin(hexa){           // conversor da palavra de 3 hexa para bin
     var numHexa = hexa.split('');
     if(numHexa.length === 1){
-        numHexa = '0' + '0' + numHexa;
+        numHexa.unshift('0', '0');
     }
     else if(numHexa.length === 2){
-        numHexa = '0' + numHexa;
+        numHexa.unshift('0');
     }
 
     return bin4bit(numHexa[0]) + bin4bit(numHexa[1]) + bin4bit(numHexa[2]);
@@ -215,6 +215,10 @@ export default class Assembler {
                 
                 case 'STORE':
                     code = code + '1000' + toBin(tabelaDeSimbolos[termo2[3]].toString(16));
+                    break;
+
+                case 'CALL':
+                    code = code + '1001' + toBin(tabelaDeSimbolos[termo2[3]].toString(16));
                     break;
 
                 case 'RTN':
